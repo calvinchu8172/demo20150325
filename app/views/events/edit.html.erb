@@ -1,0 +1,8 @@
+<h1>Edit Event</h1>
+
+<%= form_for @event, :url => { :controller => 'events', :action => 'update', :id => @event } do |f| %>
+    <%= render 'form', :f => f %>
+    <%= f.submit "Update" %>
+<% end %>
+
+<p><%= link_to 'Back to index', :controller => 'events', :action => 'index' %></p>

@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   get "welcome/fuck" =>"welcome#fuck"
   get "welcome" => "welcome#index"
   root "welcome#index"
+
+  match ':controller(/:action(/:id(.:format)))', :via => :all
+  #括弧表可有可無
+  # "/foo" => foo controller, index action
+  # "/foo/bar" => foo controller, bar action
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
