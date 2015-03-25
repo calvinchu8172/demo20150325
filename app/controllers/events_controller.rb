@@ -25,8 +25,10 @@ class EventsController < ApplicationController
     # @event = Event.new( :name => params[:event][:name], :description => params[:event][:description])
     #代表我只要 :event這個key的值，原始寫法
     if @event.save
+      flash[:notice] = "event was successfully created"
       redirect_to :action => "index"
     else
+      flash[:other] = "create failed"
       render :action => :new
     end
   end
@@ -36,17 +38,18 @@ class EventsController < ApplicationController
 
   def update
     if @event.update( event_params )
-
+      flash[:warning] = "event was successfully updated"
       # redirect_to :action => "index"
       redirect_to :action => :show, :id => @event
     else
+      flash[:other] = "update failed"
       render :action => :edit
     end
   end
 
   def destroy
     @event.destroy
-
+    flash[:alert] = "event was successfully deleted"
     redirect_to :action => :index
   end
 
