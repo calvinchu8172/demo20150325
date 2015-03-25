@@ -12,12 +12,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.name = "xxxx"
   end
 
   def show
-
-    @title = @event.name #為了變更Application的tile用
+    @page_title = @event.name #為了變更Application的tile用
   end
 
   def create
@@ -26,19 +24,24 @@ class EventsController < ApplicationController
     #同params[:event][:name]和params[:event][:description]
     # @event = Event.new( :name => params[:event][:name], :description => params[:event][:description])
     #代表我只要 :event這個key的值，原始寫法
-    @event.save
-
-    redirect_to :action => "index"
+    if @event.save
+      redirect_to :action => "index"
+    else
+      render :action => :new
+    end
   end
 
   def edit
   end
 
   def update
-    @event.update( event_params )
+    if @event.update( event_params )
 
-    # redirect_to :action => "index"
-    redirect_to :action => :show, :id => @event
+      # redirect_to :action => "index"
+      redirect_to :action => :show, :id => @event
+    else
+      render :action => :edit
+    end
   end
 
   def destroy
