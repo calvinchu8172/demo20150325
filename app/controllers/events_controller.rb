@@ -11,14 +11,15 @@ class EventsController < ApplicationController
     @events = Event.page(params[:page]).per(5)
   end
 
+  #GET /events/new
   def new
     @event = Event.new
   end
-
+  #GET /events/123
   def show
     @page_title = @event.name #為了變更Application的tile用
   end
-
+  #POST /events
   def create
     @event = Event.new( event_params )
     #代表我只要 :event這個key的值，且event_params定義在下面的protected內
@@ -27,31 +28,31 @@ class EventsController < ApplicationController
     #代表我只要 :event這個key的值，原始寫法
     if @event.save
       flash[:notice] = "event was successfully created"
-      redirect_to :action => "index"
+      redirect_to events_url #events_path也可以
     else
       flash[:other] = "create failed"
-      render :action => :new
+      render :action => :new #render :new也可以，省略:action
     end
   end
-
+  #GET /events/123/edit
   def edit
   end
-
+  #PATCH /events/123
   def update
     if @event.update( event_params )
       flash[:warning] = "event was successfully updated"
       # redirect_to :action => "index"
-      redirect_to :action => :show, :id => @event
+      redirect_to event_path(@event)
     else
       flash[:other] = "update failed"
       render :action => :edit
     end
   end
-
+  #DELETE /events/123
   def destroy
     @event.destroy
     flash[:alert] = "event was successfully deleted"
-    redirect_to :action => :index
+    redirect_to :back
   end
 
   #strong parameter
