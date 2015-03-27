@@ -3,12 +3,14 @@
 <% @events.each do |event| %>
   <ul>
     <li>
-        <%= link_to event.name, event_path(event) %>
+        <%= link_to event_path(event), :class => "btn btn-default" do %>
+            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span><%= event.name%>
+        <% end %>
         <%#= link_to 'Show', event_path(event) %>
         <%= link_to " (XML)", event_path(event, :format => :xml) %>
         <%= link_to " (JSON)", event_path(event, :format => :json) %>
-        <%= link_to 'Edit', edit_event_path(event) %>
-        <%= link_to 'Delete', event_path(event), :data => { :confirm => "are you sure?" }, :method => :delete %>
+        <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-default" %>
+        <%= link_to 'Delete', event_path(event), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-danger" %>
     </li>
   </ul>
 <%end%>
