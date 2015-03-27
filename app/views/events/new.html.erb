@@ -2,7 +2,7 @@
 
 <%= form_for @event, :url => events_path do |f| %>
     <%= render 'form', :f => f %>
-    <%= f.submit "Create" %>
+    <%= f.submit "Create", :class => "btn btn-default" %>
 <% end %>
 
 <p><%= link_to 'Back to index', events_path %></p>

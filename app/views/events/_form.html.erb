@@ -6,9 +6,31 @@
       </ul>
 <% end %>
 
-<%= f.label :name, "Name" %>
-<%#= f.text_field :name, :placeholder => "Event Name", :required => true %>
-<%= f.text_field :name, :placeholder => "Event Name" %>
 
-<%= f.label :description, "Description" %>
-<%= f.text_area :description %>
+<div class="form_group">
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, :placeholder => "Event Name", :required => true, :class => "form-control" %>
+</div>
+
+<div class="from_group">
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, :placeholder => "Description", :class=> "form-control", :rows => "5" %>
+</div>
+
+<div class="form_group">
+  <%= f.label :published_at, "發佈時間" %>
+  <%= f.datetime_select :published_at %>
+</div>
+<div class="form_group">
+  <%= f.label :due_date, "截止日期" %>
+  <%= f.date_select :due_date %>
+</div>
+<div class="form_group">
+  <%= f.label :capacity, "數量" %>
+  <%= f.number_field :capacity, in: 0..9, step: 1 %>
+</div>
+<div class="from_group">
+  <%= f.label :status, "狀態" %>
+  <%= f.select :status, event_status_options, :class => "form-control" %>
+</div>
+
