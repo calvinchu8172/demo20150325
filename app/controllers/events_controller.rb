@@ -10,6 +10,8 @@ class EventsController < ApplicationController
     # @events = Event.all
     @events = Event.page(params[:page]).per(5)
 
+    @event = Event.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @events.to_xml }
