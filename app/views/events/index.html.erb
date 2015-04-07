@@ -12,12 +12,14 @@
         <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-default" %>
         <%= link_to event_path(event), :data => { :confirm => "are you sure?" }, :method => :delete, :class => "btn btn-danger" do %>
             <%=icon("remove")%> 刪除
+        <%= link_to "參加者", event_attendees_path(event), :class => "btn btn-default" %>
         <% end %>
     </li>
   </ul>
 <%end%>
 <%= paginate @events %><br>
 <%= link_to 'New Event', new_event_path%>
+
 
 <%= link_to '#', :id => "event_form_show", :class => "btn btn-primary" do %>
     <%=icon("plus")%> 新增活動

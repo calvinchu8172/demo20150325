@@ -1,0 +1,5 @@
+新增參加者資訊
+<%= form_for @attendee, :url => event_attendees_path(@event) do |f| %>
+   <%= render 'form', :f => f %>
+   <%= f.submit "New" %>
+<% end %>
