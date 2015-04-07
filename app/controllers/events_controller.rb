@@ -8,9 +8,18 @@ class EventsController < ApplicationController
   #GET /events
   def index
     # @events = Event.all
-    @events = Event.page(params[:page]).per(5)
+    # @events = Event.page(params[:page]).per(5)
+    # 改成可以用category_id去做分類顯示
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @events = @category.events.page(params[:page]).per(5)
+    else
+      @events = Event.page(params[:page]).per(5)
+    end
 
     @event = Event.new
+
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,7 +86,7 @@ class EventsController < ApplicationController
   #strong parameter
   protected #or private
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :status, :published_at, :due_date, :category_id)
   end
 
   def set_event

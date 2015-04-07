@@ -1,11 +1,22 @@
 <h1>Event List</h1>
+
+<p>
+<% @categories.each do |category| %>
+  <%= link_to category.name, events_path( :category_id => category.id ) %>
+<% end %>
+
+  <%= link_to "All", events_path %>
+</p>
+
 <%= paginate @events %>
 <% @events.each do |event| %>
   <ul>
     <li>
         <%= link_to event_path(event), :class => "btn btn-default" do %>
-            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span><%= event.name%>
+            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+            <%= event.name%>
         <% end %>
+        <%= event.category.try(:name)%>
         <%#= link_to 'Show', event_path(event) %>
         <%= link_to " (XML)", event_path(event, :format => :xml) %>
         <%= link_to " (JSON)", event_path(event, :format => :json) %>
