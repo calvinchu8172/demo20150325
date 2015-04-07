@@ -17,6 +17,11 @@
   <%= f.text_area :description, :placeholder => "Description", :class=> "form-control", :rows => "5" %>
 </div>
 
+<div class="from_group">
+  <%= f.label :category_id, "Category" %>
+  <%= f.select :category_id, Category.all.map{ |x| [ x.name, x.id ] }, :include_blank => "請選擇！" %>
+</div>
+
 <div class="form_group">
   <%= f.label :published_at, "發佈時間" %>
   <%= f.datetime_select :published_at %>

@@ -11,7 +11,7 @@ class AttendeesController < ApplicationController
   end
 
   def new
-    @attendee = @event.attendees.new
+    @attendee = @event.attendees.build
   end
 
   def create
